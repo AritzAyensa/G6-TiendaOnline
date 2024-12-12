@@ -4,111 +4,13 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Carrito de Compras</title>
-    <style>
-        body {
-            font-family: Arial, sans-serif;
-            margin: 20px;
-            background-color: #f9f9f9;
-        }
-        .cart {
-            width: 80%;
-            margin: 0 auto;
-            background: white;
-            border: 1px solid #ddd;
-            padding: 20px;
-            border-radius: 8px;
-            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-        }
-        .cart-header {
-            font-size: 24px;
-            font-weight: bold;
-            margin-bottom: 20px;
-            text-align: center;
-        }
-        .cart-item {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            padding: 10px 0;
-            border-bottom: 1px solid #ddd;
-        }
-        .cart-item:last-child {
-            border-bottom: none;
-        }
-        .cart-item img {
-            width: 50px;
-            height: 50px;
-            border-radius: 4px;
-        }
-        .cart-item-info {
-            flex: 1;
-            margin-left: 10px;
-        }
-        .cart-item-price, .cart-item-quantity, .cart-item-total {
-            width: 100px;
-            text-align: right;
-        }
-        .remove-btn {
-            background-color: #dc3545;
-            color: white;
-            margin-left: 10px;
-            border: none;
-            padding: 5px 10px;
-            border-radius: 5px;
-            cursor: pointer;
-        }
-        .remove-btn:hover {
-            background-color: #c82333;
-        }
-        .cart-summary {
-            margin-top: 20px;
-            text-align: right;
-        }
-        .cart-summary h3 {
-            margin: 10px 0;
-        }
-        .checkout-btn {
-            padding: 10px 20px;
-            background-color: #28a745;
-            color: white;
-            text-decoration: none;
-            border-radius: 5px;
-            font-weight: bold;
-            text-align: center;
-            display: inline-block;
-        }
-        .checkout-btn:hover {
-            background-color: #218838;
-        }
-    </style>
+    <link rel="stylesheet" type="text/css" href="carrito.css">
 </head>
 <body>
     <div class="cart">
         <div class="cart-header">Carrito de Compras</div>
         <div id="cart-items">
             <!-- Items del carrito -->
-            <!-- <div class="cart-item">
-                <img src="https://via.placeholder.com/50" alt="Producto">
-                <div class="cart-item-info">
-                    <strong>Producto 1</strong>
-                    <p>Descripción breve</p>
-                </div>
-                <div class="cart-item-price">$10.00</div>
-                <div class="cart-item-quantity">1</div>
-                <div class="cart-item-total">$10.00</div>
-                <button class="remove-btn" onclick="removeItem(this)">Eliminar</button>
-            </div>
-            <div class="cart-item">
-                <img src="https://via.placeholder.com/50" alt="Producto">
-                <div class="cart-item-info">
-                    <strong>Producto 2</strong>
-                    <p>Descripción breve</p>
-                </div>
-                <div class="cart-item-price">$15.00</div>
-                <div class="cart-item-quantity">2</div>
-                <div class="cart-item-total">$30.00</div>
-                <button class="remove-btn" onclick="removeItem(this)">Eliminar</button>
-            </div> -->
         </div>
         <!-- Resumen del carrito -->
         <div class="cart-summary">

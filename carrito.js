@@ -1,11 +1,4 @@
-let carritoDOM = document.getElementById("cart");
-let producto1 = new Producto(1, "producto1", "hola", 10, ruta1);
-let producto2 = new Producto(1, "producto2", "hola", 100, ruta2);
-let producto3 = new Producto(1, "producto3", "hola", 790, ruta3);
-let producto4 = new Producto(1, "producto4", "hola", 550, ruta4);
-
-let carrito = [producto1, producto2, producto3, producto4];
-localStorage.setItem("carrito", JSON.stringify(carrito));
+let carritoDOM = document.getElementById("cart-items");
 function Producto(id, nombre, descripcion, precio, rutaImagen) {
     this.id = id;
     this.nombre = nombre;
@@ -13,18 +6,19 @@ function Producto(id, nombre, descripcion, precio, rutaImagen) {
     this.precio = precio;
     this.rutaImagen = rutaImagen;
 }
+
 function ListarProductos() {
     let listaProductos = RecibirProductos();
-    for(let producto in  listaProductos){
+    for(let producto of listaProductos){
         // let id = producto.id
-        let cantidad = listaProductos.filter(producto => producto.id === producto.id).length;
+        let cantidad = listaProductos.filter(p => p.id === producto.id).length;
         CrearProducto(producto, cantidad);
     }
     CalcularTotal();
 }
 
 function RecibirProductos(){
-    let carrito = JSON.part(localStorage.getItem('Carrito'));
+    let carrito = JSON.parse(localStorage.getItem('carrito'));
     return carrito;    
 }
 
@@ -50,7 +44,7 @@ function CrearProducto(producto, cantidad){
     botonEliminar.textContent = "Eliminar";
     botonEliminar.classList.add("remove-btn");
     botonEliminar.addEventListener("click", () => {
-        EliminarProducto(producto, cantidad, divProducto);
+        EliminarProducto(producto, divProducto);
     });
     divTotal.innerHTML = `<p>${precioTotal}€</p>`;
     divProducto.appendChild(imgProducto);
@@ -58,35 +52,26 @@ function CrearProducto(producto, cantidad){
     divProducto.appendChild(divPrecio);
     divProducto.appendChild(divCantidad);
     divProducto.appendChild(divTotal);
+    divProducto.appendChild(botonEliminar);
     carritoDOM.appendChild(divProducto);
 }
 
-function EliminarProducto(producto, cantidad, divProducto){
+function EliminarProducto(producto, divProducto) {
     let productos = RecibirProductos();
-    let precioTotal = 0;
-    if(cantidad < 1){
-        carritoDOM.removeChild(divProducto);
-        let indice = productos.findIndex(prod => prod.id === producto.id);
-        carrito.splice(indice, 1);
-        localStorage.setItem('Carrito', JSON.stringify(productos));
-        CalcularTotal();
-    }else{
-        cantidad --;
-        precioTotal = producto.precio*cantidad;
-        divCantidad.textContent = cantidad;
-        divTotal.textContent = precioTotal + "€";
-    }
+    productos = productos.filter(item => item.id !== producto.id);
+    localStorage.setItem('carrito', JSON.stringify(productos));
+    carritoDOM.removeChild(divProducto);
     CalcularTotal();
 }
 function CalcularTotal(){
     let total_carrito = 0;
     let totales_carrito = document.querySelectorAll('.cart-item-total');
-    for(let total in totales_carrito){
+    for(let total of totales_carrito){
         let precio_txt = total.textContent;
         let precio = parseFloat(precio_txt.replace('€', ''));
         total_carrito += precio;
     }
-    document.getElementById('total-price').innerHTML = total + "€";
+    document.getElementById('total-price').innerHTML = total_carrito + "€";
 }
 
 ListarProductos();
