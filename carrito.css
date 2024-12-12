@@ -60,6 +60,20 @@ body {
 .cart-summary h3 {
     margin: 10px 0;
 }
+.cancelar-btn {
+    padding: 10px 20px;
+    background-color: #e71717;
+    color: white;
+    text-decoration: none;
+    border-radius: 5px;
+    font-weight: bold;
+    text-align: center;
+    display: inline-block;
+    cursor: pointer;
+}
+.cancelar-btn:hover {
+    background-color: #ae1b1b;
+}
 .checkout-btn {
     padding: 10px 20px;
     background-color: #28a745;

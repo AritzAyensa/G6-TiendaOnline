@@ -74,4 +74,13 @@ function CalcularTotal(){
     document.getElementById('total-price').innerHTML = total_carrito + "€";
 }
 
+function BorrarCarrito(){
+    localStorage.removeItem('carrito');
+    let carritoDOM = document.getElementById("cart-items");
+    while(carritoDOM.firstChild){
+        carritoDOM.removeChild(carritoDOM.firstChild);
+    }
+    document.getElementById('total-price').innerHTML = "0€";
+}
+
 ListarProductos();
