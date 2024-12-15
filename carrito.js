@@ -1,18 +1,17 @@
 let carritoDOM = document.getElementById("cart-items");
-function Producto(id, nombre, descripcion, precio, rutaImagen) {
+function Producto(id, nombre, descripcion, precio, rutaImagen, cantidadEnCarrito) {
     this.id = id;
     this.nombre = nombre;
     this.descripcion = descripcion;
     this.precio = precio;
     this.rutaImagen = rutaImagen;
+    this.cantidadEnCarrito = cantidadEnCarrito;
 }
 
 function ListarProductos() {
     let listaProductos = RecibirProductos();
     for(let producto of listaProductos){
-        // let id = producto.id
-        let cantidad = listaProductos.filter(p => p.id === producto.id).length;
-        CrearProducto(producto, cantidad);
+        CrearProducto(producto);
     }
     CalcularTotal();
 }
@@ -22,7 +21,7 @@ function RecibirProductos(){
     return carrito;    
 }
 
-function CrearProducto(producto, cantidad){
+function CrearProducto(producto){
     let precioTotal = 0;
     let divProducto = document.createElement("div");
     divProducto.classList.add("cart-item");
@@ -36,10 +35,10 @@ function CrearProducto(producto, cantidad){
     divPrecio.innerHTML = `<p>${producto.precio}€</p>`;
     let divCantidad = document.createElement("div");
     divCantidad.classList.add("cart-item-quantity");
-    divCantidad.innerHTML = cantidad;
+    divCantidad.innerHTML = producto.cantidadEnCarrito;
     let divTotal = document.createElement("div");
     divTotal.classList.add("cart-item-total");
-    precioTotal += (producto.precio * cantidad);
+    precioTotal += (producto.precio * producto.cantidadEnCarrito);
     let botonEliminar = document.createElement("button");
     botonEliminar.textContent = "Eliminar";
     botonEliminar.classList.add("remove-btn");
